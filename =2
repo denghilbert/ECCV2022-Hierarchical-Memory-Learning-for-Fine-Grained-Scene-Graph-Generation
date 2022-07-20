@@ -1,0 +1,350 @@
+2021-08-03 00:53:50,776 maskrcnn_benchmark INFO: Using 3 GPUs
+2021-08-03 00:53:50,776 maskrcnn_benchmark INFO: AMP_VERBOSE: False
+DATALOADER:
+  ASPECT_RATIO_GROUPING: True
+  NUM_WORKERS: 4
+  SIZE_DIVISIBILITY: 32
+DATASETS:
+  TEST: ('VG_stanford_filtered_with_attribute_test',)
+  TRAIN: ('VG_stanford_filtered_with_attribute_train',)
+  VAL: ('VG_stanford_filtered_with_attribute_val',)
+DETECTED_SGG_DIR: .
+DTYPE: float16
+GLOVE_DIR: /media/data1/deng_sgg/glove
+INPUT:
+  BRIGHTNESS: 0.0
+  CONTRAST: 0.0
+  HUE: 0.0
+  MAX_SIZE_TEST: 1000
+  MAX_SIZE_TRAIN: 1000
+  MIN_SIZE_TEST: 600
+  MIN_SIZE_TRAIN: (600,)
+  PIXEL_MEAN: [102.9801, 115.9465, 122.7717]
+  PIXEL_STD: [1.0, 1.0, 1.0]
+  SATURATION: 0.0
+  TO_BGR255: True
+  VERTICAL_FLIP_PROB_TRAIN: 0.0
+MODEL:
+  ATTRIBUTE_ON: False
+  BACKBONE:
+    CONV_BODY: R-101-FPN
+    FREEZE_CONV_BODY_AT: 2
+  CLS_AGNOSTIC_BBOX_REG: False
+  DEVICE: cuda
+  FBNET:
+    ARCH: default
+    ARCH_DEF: 
+    BN_TYPE: bn
+    DET_HEAD_BLOCKS: []
+    DET_HEAD_LAST_SCALE: 1.0
+    DET_HEAD_STRIDE: 0
+    DW_CONV_SKIP_BN: True
+    DW_CONV_SKIP_RELU: True
+    KPTS_HEAD_BLOCKS: []
+    KPTS_HEAD_LAST_SCALE: 0.0
+    KPTS_HEAD_STRIDE: 0
+    MASK_HEAD_BLOCKS: []
+    MASK_HEAD_LAST_SCALE: 0.0
+    MASK_HEAD_STRIDE: 0
+    RPN_BN_TYPE: 
+    RPN_HEAD_BLOCKS: 0
+    SCALE_FACTOR: 1.0
+    WIDTH_DIVISOR: 1
+  FLIP_AUG: False
+  FPN:
+    USE_GN: False
+    USE_RELU: False
+  GROUP_NORM:
+    DIM_PER_GP: -1
+    EPSILON: 1e-05
+    NUM_GROUPS: 32
+  KEYPOINT_ON: False
+  MASK_ON: False
+  META_ARCHITECTURE: GeneralizedRCNN
+  PRETRAINED_DETECTOR_CKPT: /home/dell/checkpoints/PreCls_Causal_TDE_SUM_MOTIFS-rerank
+  RELATION_ON: True
+  RESNETS:
+    BACKBONE_OUT_CHANNELS: 256
+    DEFORMABLE_GROUPS: 1
+    NUM_GROUPS: 32
+    RES2_OUT_CHANNELS: 256
+    RES5_DILATION: 1
+    STAGE_WITH_DCN: (False, False, False, False)
+    STEM_FUNC: StemWithFixedBatchNorm
+    STEM_OUT_CHANNELS: 64
+    STRIDE_IN_1X1: False
+    TRANS_FUNC: BottleneckWithFixedBatchNorm
+    WIDTH_PER_GROUP: 8
+    WITH_MODULATED_DCN: False
+  RETINANET:
+    ANCHOR_SIZES: (32, 64, 128, 256, 512)
+    ANCHOR_STRIDES: (8, 16, 32, 64, 128)
+    ASPECT_RATIOS: (0.5, 1.0, 2.0)
+    BBOX_REG_BETA: 0.11
+    BBOX_REG_WEIGHT: 4.0
+    BG_IOU_THRESHOLD: 0.4
+    FG_IOU_THRESHOLD: 0.5
+    INFERENCE_TH: 0.05
+    LOSS_ALPHA: 0.25
+    LOSS_GAMMA: 2.0
+    NMS_TH: 0.4
+    NUM_CLASSES: 81
+    NUM_CONVS: 4
+    OCTAVE: 2.0
+    PRE_NMS_TOP_N: 1000
+    PRIOR_PROB: 0.01
+    SCALES_PER_OCTAVE: 3
+    STRADDLE_THRESH: 0
+    USE_C5: True
+  RETINANET_ON: False
+  ROI_ATTRIBUTE_HEAD:
+    ATTRIBUTE_BGFG_RATIO: 3
+    ATTRIBUTE_BGFG_SAMPLE: True
+    ATTRIBUTE_LOSS_WEIGHT: 1.0
+    FEATURE_EXTRACTOR: FPN2MLPFeatureExtractor
+    MAX_ATTRIBUTES: 10
+    NUM_ATTRIBUTES: 201
+    POS_WEIGHT: 50.0
+    PREDICTOR: FPNPredictor
+    SHARE_BOX_FEATURE_EXTRACTOR: True
+    USE_BINARY_LOSS: True
+  ROI_BOX_HEAD:
+    CONV_HEAD_DIM: 256
+    DILATION: 1
+    FEATURE_EXTRACTOR: FPN2MLPFeatureExtractor
+    MLP_HEAD_DIM: 4096
+    NUM_CLASSES: 151
+    NUM_STACKED_CONVS: 4
+    POOLER_RESOLUTION: 7
+    POOLER_SAMPLING_RATIO: 2
+    POOLER_SCALES: (0.25, 0.125, 0.0625, 0.03125)
+    PREDICTOR: FPNPredictor
+    USE_GN: False
+  ROI_HEADS:
+    BATCH_SIZE_PER_IMAGE: 256
+    BBOX_REG_WEIGHTS: (10.0, 10.0, 5.0, 5.0)
+    BG_IOU_THRESHOLD: 0.3
+    DETECTIONS_PER_IMG: 80
+    FG_IOU_THRESHOLD: 0.5
+    NMS: 0.3
+    NMS_FILTER_DUPLICATES: True
+    POSITIVE_FRACTION: 0.5
+    POST_NMS_PER_CLS_TOPN: 300
+    SCORE_THRESH: 0.01
+    USE_FPN: True
+  ROI_KEYPOINT_HEAD:
+    CONV_LAYERS: (512, 512, 512, 512, 512, 512, 512, 512)
+    FEATURE_EXTRACTOR: KeypointRCNNFeatureExtractor
+    MLP_HEAD_DIM: 1024
+    NUM_CLASSES: 17
+    POOLER_RESOLUTION: 14
+    POOLER_SAMPLING_RATIO: 0
+    POOLER_SCALES: (0.0625,)
+    PREDICTOR: KeypointRCNNPredictor
+    RESOLUTION: 14
+    SHARE_BOX_FEATURE_EXTRACTOR: True
+  ROI_MASK_HEAD:
+    CONV_LAYERS: (256, 256, 256, 256)
+    DILATION: 1
+    FEATURE_EXTRACTOR: ResNet50Conv5ROIFeatureExtractor
+    MLP_HEAD_DIM: 1024
+    POOLER_RESOLUTION: 14
+    POOLER_SAMPLING_RATIO: 0
+    POOLER_SCALES: (0.0625,)
+    POSTPROCESS_MASKS: False
+    POSTPROCESS_MASKS_THRESHOLD: 0.5
+    PREDICTOR: MaskRCNNC4Predictor
+    RESOLUTION: 14
+    SHARE_BOX_FEATURE_EXTRACTOR: True
+    USE_GN: False
+  ROI_RELATION_HEAD:
+    ADD_GTBOX_TO_PROPOSAL_IN_TRAIN: True
+    BATCH_SIZE_PER_IMAGE: 1024
+    CAUSAL:
+      CONTEXT_LAYER: motifs
+      EFFECT_ANALYSIS: True
+      EFFECT_TYPE: TDE
+      FUSION_TYPE: sum
+      SEPARATE_SPATIAL: False
+      SPATIAL_FOR_VISION: True
+    CONTEXT_DROPOUT_RATE: 0.2
+    CONTEXT_HIDDEN_DIM: 512
+    CONTEXT_OBJ_LAYER: 1
+    CONTEXT_POOLING_DIM: 4096
+    CONTEXT_REL_LAYER: 1
+    EMBED_DIM: 200
+    FEATURE_EXTRACTOR: RelationFeatureExtractor
+    LABEL_SMOOTHING_LOSS: False
+    NUM_CLASSES: 51
+    NUM_SAMPLE_PER_GT_REL: 4
+    POOLING_ALL_LEVELS: True
+    POSITIVE_FRACTION: 0.25
+    PREDICTOR: CausalAnalysisPredictor
+    PREDICT_USE_BIAS: True
+    PREDICT_USE_VISION: True
+    REL_PROP: [0.01858, 0.00057, 0.00051, 0.00109, 0.0015, 0.00489, 0.00432, 0.02913, 0.00245, 0.00121, 0.00404, 0.0011, 0.00132, 0.00172, 5e-05, 0.00242, 0.0005, 0.00048, 0.00208, 0.15608, 0.0265, 0.06091, 0.009, 0.00183, 0.00225, 0.0009, 0.00028, 0.00077, 0.04844, 0.08645, 0.31621, 0.00088, 0.00301, 0.00042, 0.00186, 0.001, 0.00027, 0.01012, 0.0001, 0.01286, 0.00647, 0.00084, 0.01077, 0.00132, 0.00069, 0.00376, 0.00214, 0.11424, 0.01205, 0.02958]
+    REQUIRE_BOX_OVERLAP: False
+    TRANSFORMER:
+      DROPOUT_RATE: 0.1
+      INNER_DIM: 2048
+      KEY_DIM: 64
+      NUM_HEAD: 8
+      OBJ_LAYER: 4
+      REL_LAYER: 2
+      VAL_DIM: 64
+    USE_GT_BOX: True
+    USE_GT_OBJECT_LABEL: True
+  RPN:
+    ANCHOR_SIZES: (32, 64, 128, 256, 512)
+    ANCHOR_STRIDE: (4, 8, 16, 32, 64)
+    ASPECT_RATIOS: (0.23232838, 0.63365731, 1.28478321, 3.15089189)
+    BATCH_SIZE_PER_IMAGE: 256
+    BG_IOU_THRESHOLD: 0.3
+    FG_IOU_THRESHOLD: 0.7
+    FPN_POST_NMS_PER_BATCH: False
+    FPN_POST_NMS_TOP_N_TEST: 1000
+    FPN_POST_NMS_TOP_N_TRAIN: 1000
+    MIN_SIZE: 0
+    NMS_THRESH: 0.7
+    POSITIVE_FRACTION: 0.5
+    POST_NMS_TOP_N_TEST: 1000
+    POST_NMS_TOP_N_TRAIN: 1000
+    PRE_NMS_TOP_N_TEST: 6000
+    PRE_NMS_TOP_N_TRAIN: 6000
+    RPN_HEAD: SingleConvRPNHead
+    RPN_MID_CHANNEL: 256
+    STRADDLE_THRESH: 0
+    USE_FPN: True
+  RPN_ONLY: False
+  VGG:
+    VGG16_OUT_CHANNELS: 512
+  WEIGHT: catalog://ImageNetPretrained/FAIR/20171220/X-101-32x8d
+OUTPUT_DIR: /home/dell/checkpoints/PreCls_Causal_TDE_SUM_MOTIFS-rerank1
+PATHS_CATALOG: /media/data1/deng_sgg/Unbiased_SGG/maskrcnn_benchmark/config/paths_catalog.py
+PATHS_DATA: /media/data1/deng_sgg/Unbiased_SGG/maskrcnn_benchmark/config/../data/datasets
+SOLVER:
+  BASE_LR: 0.01
+  BIAS_LR_FACTOR: 1
+  CHECKPOINT_PERIOD: 2000
+  CLIP_NORM: 5.0
+  GAMMA: 0.1
+  GRAD_NORM_CLIP: 5.0
+  IMS_PER_BATCH: 16
+  MAX_ITER: 40000
+  MOMENTUM: 0.9
+  PRE_VAL: True
+  PRINT_GRAD_FREQ: 4000
+  SCHEDULE:
+    COOLDOWN: 0
+    FACTOR: 0.1
+    MAX_DECAY_STEP: 3
+    PATIENCE: 2
+    THRESHOLD: 0.001
+    TYPE: WarmupReduceLROnPlateau
+  STEPS: (10000, 16000)
+  TO_VAL: True
+  UPDATE_SCHEDULE_DURING_LOAD: False
+  VAL_PERIOD: 2000
+  WARMUP_FACTOR: 0.1
+  WARMUP_ITERS: 500
+  WARMUP_METHOD: linear
+  WEIGHT_DECAY: 0.0001
+  WEIGHT_DECAY_BIAS: 0.0
+TEST:
+  ALLOW_LOAD_FROM_CACHE: False
+  BBOX_AUG:
+    ENABLED: False
+    H_FLIP: False
+    MAX_SIZE: 4000
+    SCALES: ()
+    SCALE_H_FLIP: False
+  CUSTUM_EVAL: False
+  CUSTUM_PATH: .
+  DETECTIONS_PER_IMG: 100
+  EXPECTED_RESULTS: []
+  EXPECTED_RESULTS_SIGMA_TOL: 4
+  IMS_PER_BATCH: 3
+  RELATION:
+    IOU_THRESHOLD: 0.5
+    LATER_NMS_PREDICTION_THRES: 0.5
+    MULTIPLE_PREDS: False
+    REQUIRE_OVERLAP: False
+    SYNC_GATHER: True
+  SAVE_PROPOSALS: False
+2021-08-03 00:53:50,777 maskrcnn_benchmark INFO: Collecting env info (might take some time)
+2021-08-03 00:53:53,711 maskrcnn_benchmark INFO: 
+PyTorch version: 1.7.1
+Is debug build: False
+CUDA used to build PyTorch: 10.1
+ROCM used to build PyTorch: N/A
+
+OS: Ubuntu 18.04.5 LTS (x86_64)
+GCC version: (Ubuntu 7.5.0-3ubuntu1~18.04) 7.5.0
+Clang version: Could not collect
+CMake version: Could not collect
+
+Python version: 3.7 (64-bit runtime)
+Is CUDA available: True
+CUDA runtime version: Could not collect
+GPU models and configuration: 
+GPU 0: TITAN RTX
+GPU 1: TITAN RTX
+GPU 2: GeForce RTX 3090
+GPU 3: TITAN RTX
+
+Nvidia driver version: 460.84
+cuDNN version: Could not collect
+HIP runtime version: N/A
+MIOpen runtime version: N/A
+
+Versions of relevant libraries:
+[pip3] numpy==1.20.2
+[pip3] Pytorch-detection==0.0.1
+[pip3] torch==1.7.1
+[pip3] torchaudio==0.7.0a0+a853dff
+[pip3] torchvision==0.8.2
+[conda] blas                      1.0                         mkl    https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/free
+[conda] cudatoolkit               10.1.243             h036e899_8    https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/conda-forge
+[conda] libblas                   3.9.0                     9_mkl    https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/conda-forge
+[conda] libcblas                  3.9.0                     9_mkl    https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/conda-forge
+[conda] liblapack                 3.9.0                     9_mkl    https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/conda-forge
+[conda] mkl                       2021.2.0           h06a4308_296    defaults
+[conda] mkl-random                1.2.1                    pypi_0    pypi
+[conda] mkl-service               2.3.0                    pypi_0    pypi
+[conda] mkl_fft                   1.3.0            py37h42c9631_2    defaults
+[conda] mkl_random                1.2.2            py37h219a48f_0    https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/conda-forge
+[conda] numpy                     1.20.2           py37h2d18471_0    defaults
+[conda] numpy-base                1.20.2           py37hfae3a4d_0    defaults
+[conda] pytorch                   1.7.1           py3.7_cuda10.1.243_cudnn7.6.3_0    pytorch
+[conda] pytorch-detection         0.0.1                    pypi_0    pypi
+[conda] torchaudio                0.7.2                      py37    pytorch
+[conda] torchvision               0.8.2                py37_cu101    pytorch
+        Pillow (8.2.0)
+2021-08-03 00:53:58,973 maskrcnn_benchmark.data.build INFO: ----------------------------------------------------------------------------------------------------
+2021-08-03 00:53:58,973 maskrcnn_benchmark.data.build INFO: get dataset statistics...
+2021-08-03 00:53:58,974 maskrcnn_benchmark.data.build INFO: Loading data statistics from: /home/dell/checkpoints/PreCls_Causal_TDE_SUM_MOTIFS-rerank1/VG_stanford_filtered_with_attribute_train_statistics.cache
+2021-08-03 00:53:58,974 maskrcnn_benchmark.data.build INFO: ----------------------------------------------------------------------------------------------------
+loading word vectors from /media/data1/deng_sgg/glove/glove.6B.200d.pt
+loading word vectors from /media/data1/deng_sgg/glove/glove.6B.200d.pt
+loading word vectors from /media/data1/deng_sgg/glove/glove.6B.200d.pt
+__background__ -> __background__ 
+fail on __background__
+__background__ -> __background__ 
+fail on __background__
+__background__ -> __background__ 
+fail on __background__
+loading word vectors from /media/data1/deng_sgg/glove/glove.6B.200d.pt
+loading word vectors from /media/data1/deng_sgg/glove/glove.6B.200d.pt
+loading word vectors from /media/data1/deng_sgg/glove/glove.6B.200d.pt
+__background__ -> __background__ 
+fail on __background__
+__background__ -> __background__ 
+fail on __background__
+__background__ -> __background__ 
+fail on __background__
+Warning:  multi_tensor_applier fused unscale kernel is unavailable, possibly because apex was installed without --cuda_ext --cpp_ext. Using Python fallback.  Original ImportError was: ImportError("/lib/x86_64-linux-gnu/libm.so.6: version `GLIBC_2.29' not found (required by /home/dell/miniconda3/envs/sgg/lib/python3.7/site-packages/apex-0.1-py3.7-linux-x86_64.egg/amp_C.cpython-37m-x86_64-linux-gnu.so)")
+2021-08-03 00:54:02,116 maskrcnn_benchmark.utils.checkpoint INFO: Loading checkpoint from /home/dell/checkpoints/PreCls_Causal_TDE_SUM_MOTIFS-rerank1/model_0018000.pth
+2021-08-03 00:54:06,310 maskrcnn_benchmark.inference INFO: Start evaluation on VG_stanford_filtered_with_attribute_test dataset(26446 images).
+*****************************************
+Setting OMP_NUM_THREADS environment variable for each process to be 1 in default, to avoid your system being overloaded, please further tune the variable for optimal performance in your application as needed. 
+*****************************************
