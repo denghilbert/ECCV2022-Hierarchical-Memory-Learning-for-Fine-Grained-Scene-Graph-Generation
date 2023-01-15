@@ -6,7 +6,7 @@
 
 Our paper [Hierarchical Memory Learning for Fine-Grained Scene Graph Generation](https://arxiv.org/abs/2203.06907) has been accepted by ECCV 2022.
 
-##Installation
+## Installation
 
 Follow this [installation](https://github.com/KaihuaTang/Scene-Graph-Benchmark.pytorch/blob/master/INSTALL.md).
 
@@ -47,6 +47,8 @@ If you find this project helps your research, please kindly consider citing our 
 }
 ```
 
-##Acknowledgements
+
+
+## Acknowledgements
 
 Part of our code is inherited from [Unbiased SGG](https://github.com/KaihuaTang/Scene-Graph-Benchmark.pytorch). We are grateful to the authors for releasing their code.
